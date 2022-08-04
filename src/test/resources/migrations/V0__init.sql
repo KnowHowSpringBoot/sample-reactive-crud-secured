@@ -1,0 +1,1 @@
+CREATE USER postgres WITH ENCRYPTED PASSWORD 'postgres';
