@@ -1,0 +1,117 @@
+kind: pipeline
+name: CI
+type : docker
+
+trigger:
+  branch:
+    - main
+    - develop
+    - feature/*
+  event:
+    - push
+
+volumes:
+  - name: m2cache
+    host:
+      path: /volume1/m2cache
+steps:
+
+  - name: build
+    image: docker-registry.ujar.org/ujar/maven:3-openjdk-17-slim
+    pull : if-not-exists
+    volumes:
+      - name: m2cache
+        path: /root/.m2
+    environment :
+      DATASOURCE_DRIVER: org.postgresql.Driver
+      DATASOURCE_URL: r2dbc:postgresql://db:5432/sa_test_db
+      DEPLOYER_USERNAME :
+        from_secret : DEPLOYER_USERNAME
+      DEPLOYER_PASSWORD :
+        from_secret : DEPLOYER_PASSWORD
+      SONAR_HOST :
+        from_secret : SONAR_HOST
+      SONAR_TOKEN :
+        from_secret : SONAR_TOKEN
+    commands:
+      - mvn clean compile test-compile -P default -B  --file pom.xml -s ../maven-settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
+      - mvn pmd:check -P default -B --file pom.xml -s ../maven-settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
+      - mvn com.github.spotbugs:spotbugs-maven-plugin:check -P default -Dspotbugs.xmlOutput=true -Dspotbugs.failOnError=true -Dspotbugs.includeTests=true  --file pom.xml -s ../maven-settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
+      - mvn org.jacoco:jacoco-maven-plugin:prepare-agent integration-test package org.jacoco:jacoco-maven-plugin:report sonar:sonar -P default -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_TOKEN -Dsonar.projectKey=ujar-org:basics-reactive-user-department -Dsonar.projectName=ujar-org:basics-reactive-user-department --batch-mode  --file pom.xml -s ../maven-settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
+    when:
+      branch:
+        include:
+          - feature/*
+          - develop
+          - main
+
+  - name: publish-snapshot-package
+    depends_on :
+      - build
+    image: docker-registry.ujar.org/ujar/maven:3-openjdk-17-slim
+    pull : if-not-exists
+    volumes :
+      - name : m2cache
+        path : /root/.m2
+    environment :
+      DEPLOYER_USERNAME :
+        from_secret : DEPLOYER_USERNAME
+      DEPLOYER_PASSWORD :
+        from_secret : DEPLOYER_PASSWORD
+    commands:
+      - mvn deploy -DskipTests=true -Dcheckstyle.skip=true -s ../maven-settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
+    when:
+      branch:
+        include:
+          - feature/*
+          - develop
+          - main
+
+  - name: publish-release-package
+    depends_on :
+      - build
+    image: docker-registry.ujar.org/ujar/maven:3-openjdk-17-slim
+    pull : if-not-exists
+    volumes :
+      - name : m2cache
+        path : /root/.m2
+    environment :
+      DEPLOYER_USERNAME :
+        from_secret : DEPLOYER_USERNAME
+      DEPLOYER_PASSWORD :
+        from_secret : DEPLOYER_PASSWORD
+    commands:
+      - mvn deploy -DskipTests=true -Dcheckstyle.skip=true -s ../maven-settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
+    when:
+      event: tag
+
+  - name: docker-build-dev-image
+    depends_on :
+      - publish-snapshot-package
+    image: plugins/docker
+    settings:
+      dockerfile: Dockerfile
+      context: ./
+      storage_driver: vfs
+      username:
+        from_secret: DOCKER_USERNAME
+      password:
+        from_secret: DOCKER_PASSWORD
+      repo: docker-registry.ujar.org/ujar/basics-reactive-user-department
+      registry: docker-registry.ujar.org
+      tags :
+        - latest
+    when:
+      branch:
+        include:
+          - feature/*
+          - develop
+          - main
+
+services:
+  - name: db
+    image: postgres:13.5
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: sa_test_db

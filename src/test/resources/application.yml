@@ -1,0 +1,43 @@
+build :
+  description : '@project.description@'
+  relative-path : ''
+  version : '@project.version@'
+
+spring :
+  application :
+    name : basics-reactive-user-department
+  devtools :
+    add-properties : false
+    restart :
+      enabled : false
+    livereload :
+      enabled : false
+  r2dbc :
+    url : ${DATASOURCE_URL:r2dbc:tc:postgresql:///sa_test_db?TC_IMAGE_TAG=13.5}
+    username : ${DATASOURCE_USERNAME:postgres}
+    password : ${DATASOURCE_PASSWORD:postgres}
+  flyway :
+    url : ${DATASOURCE_URL:jdbc:tc:postgresql:13.5:///sa_test_db}
+    user : ${DATASOURCE_USERNAME:postgres}
+    password : ${DATASOURCE_PASSWORD:postgres}
+    enabled : true
+    schemas : basics_reactive_user_department
+    locations : classpath:migrations
+    encoding : UTF-8
+    table : flyway_schema_history
+    baseline-on-migrate : true
+    baseline-version : 1
+    fail-on-missing-locations : true
+  jpa :
+    hibernate :
+      ddl-auto : none
+      naming :
+        physical-strategy : org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicit-strategy : org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+    open-in-view : true
+    properties :
+      hibernate.jdbc.time_zone : UTC
+      hibernate.cache.use_second_level_cache : false
+      hibernate.cache.use_query_cache : false
+      hibernate.generate_statistics : false
+    show-sql : false
