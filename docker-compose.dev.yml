@@ -1,0 +1,34 @@
+version: '3'
+services:
+  postgres:
+    image: "postgres:13.5"
+    container_name: basics-reactive-dev-user-department-postgres
+    restart: unless-stopped
+    ports :
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=sa_test_db
+  prometheus :
+    container_name : basics-reactive-dev-user-department-prometheus
+    image : prom/prometheus:v2.32.1
+    volumes :
+      - ./docker/prometheus/:/etc/prometheus/
+    command :
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    # On MacOS, remove next line and replace localhost by host.docker.internal in docker/prometheus/prometheus.yml and
+    # docker/grafana/provisioning/datasources/datasource.yml
+    network_mode : 'host' # to test locally running service
+  grafana :
+    container_name : basics-reactive-dev-user-department-grafana
+    image : grafana/grafana:8.3.3
+    volumes :
+      - ./docker/grafana/provisioning/:/etc/grafana/provisioning/
+    environment :
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_INSTALL_PLUGINS=grafana-piechart-panel
+    # On MacOS, remove next line and replace localhost by host.docker.internal in docker/prometheus/prometheus.yml and
+    # docker/grafana/provisioning/datasources/datasource.yml
+    network_mode : 'host' # to test locally running service
