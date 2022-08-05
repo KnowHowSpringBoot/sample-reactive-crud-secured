@@ -1,5 +1,6 @@
 package org.ujar.basics.reactive.userdepartment.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,4 +26,20 @@ public class User {
   private int age;
 
   private double salary;
+
+  @JsonIgnore
+  private String password;
+
+  private UserRole role;
+
+  @Override
+  public String toString() {
+    return "User{" +
+           "id=" + id +
+           ", name='" + name + '\'' +
+           ", age=" + age +
+           ", salary=" + salary +
+           ", role=" + role +
+           '}';
+  }
 }
