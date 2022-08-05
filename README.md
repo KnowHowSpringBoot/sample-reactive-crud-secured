@@ -1,6 +1,7 @@
-# User CRUD - Sample reactive App
+# User CRUD - Reactive app
 
 [![Build Status](https://drone.ujar.org/api/badges/ujar-org/basics-reactive-user-department/status.svg?ref=refs/heads/main)](https://drone.ujar.org/ujar-org/basics-reactive-user-department)
+[![Quality Gate Status](https://sonarqube.ujar.org/api/project_badges/measure?project=ujar-org%3Abasics-reactive-user-department&metric=alert_status&token=d12412b5ba6e0f520aea380464afde43241167c9)](https://sonarqube.ujar.org/dashboard?id=ujar-org%3Abasics-reactive-user-department)
 
 Minimal Spring Boot based reactive CRUD example, which manages user entity (including Swagger UI).
 

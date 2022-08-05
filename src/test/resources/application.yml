@@ -13,11 +13,11 @@ spring :
     livereload :
       enabled : false
   r2dbc :
-    url : ${DATASOURCE_URL:r2dbc:tc:postgresql:///sa_test_db?TC_IMAGE_TAG=13.5}
+    url : ${R2DBC_DATASOURCE_URL:r2dbc:tc:postgresql:///sa_test_db?TC_IMAGE_TAG=13.5}
     username : ${DATASOURCE_USERNAME:postgres}
     password : ${DATASOURCE_PASSWORD:postgres}
   flyway :
-    url : ${DATASOURCE_URL:jdbc:tc:postgresql:13.5:///sa_test_db}
+    url : ${JDBC_DATASOURCE_URL:jdbc:tc:postgresql:13.5:///sa_test_db}
     user : ${DATASOURCE_USERNAME:postgres}
     password : ${DATASOURCE_PASSWORD:postgres}
     enabled : true
@@ -41,3 +41,8 @@ spring :
       hibernate.cache.use_query_cache : false
       hibernate.generate_statistics : false
     show-sql : false
+
+ujar:
+  jwt:
+    secret: very-very-secret-key
+    expiration: 86400
