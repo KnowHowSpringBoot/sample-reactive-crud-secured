@@ -24,14 +24,14 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
-public class UserController {
+class UserController {
 
   private final UserService userService;
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   @ApiResponses(@ApiResponse(code = 201, message = "Created", response = User.class))
-  Mono<User> create(@RequestBody User user) {
+  Mono<User> create(@RequestBody final User user) {
     return userService.createUser(user);
   }
 
@@ -43,7 +43,7 @@ public class UserController {
 
   @GetMapping("/{userId}")
   @ApiResponses(@ApiResponse(code = 200, message = "Ok", response = User.class))
-  Mono<ResponseEntity<User>> getUserById(@PathVariable Integer userId) {
+  Mono<ResponseEntity<User>> getUserById(@PathVariable final Integer userId) {
     Mono<User> user = userService.findById(userId);
     return user.map(ResponseEntity::ok)
         .defaultIfEmpty(ResponseEntity.notFound().build());
@@ -51,14 +51,14 @@ public class UserController {
 
   @PutMapping("/{userId}")
   @ApiResponses(@ApiResponse(code = 200, message = "Ok", response = User.class))
-  Mono<ResponseEntity<User>> updateUserById(@PathVariable Integer userId, @RequestBody User user) {
+  Mono<ResponseEntity<User>> updateUserById(@PathVariable final Integer userId, @RequestBody final User user) {
     return userService.updateUser(userId, user)
         .map(ResponseEntity::ok)
         .defaultIfEmpty(ResponseEntity.badRequest().build());
   }
 
   @DeleteMapping("/{userId}")
-  Mono<ResponseEntity<Void>> deleteUserById(@PathVariable Integer userId) {
+  Mono<ResponseEntity<Void>> deleteUserById(@PathVariable final Integer userId) {
     return userService.deleteUser(userId)
         .map(r -> ResponseEntity.ok().<Void>build())
         .defaultIfEmpty(ResponseEntity.notFound().build());
@@ -66,19 +66,19 @@ public class UserController {
 
   @GetMapping("/age/{age}")
   @ApiResponses(@ApiResponse(code = 200, message = "Ok", response = User.class, responseContainer = "List"))
-  Flux<User> getUsersByAge(@PathVariable int age) {
+  Flux<User> getUsersByAge(@PathVariable final int age) {
     return userService.findUsersByAge(age);
   }
 
   @PostMapping("/search/id")
   @ApiResponses(@ApiResponse(code = 200, message = "Ok", response = User.class, responseContainer = "List"))
-  public Flux<User> fetchUsersByIds(@RequestBody List<Integer> ids) {
+  public Flux<User> fetchUsersByIds(@RequestBody final List<Integer> ids) {
     return userService.fetchUsers(ids);
   }
 
   @GetMapping("/{userId}/department")
   @ApiResponses(@ApiResponse(code = 200, message = "Ok", response = UserDepartmentDTO.class))
-  Mono<UserDepartmentDTO> fetchUserAndDepartment(@PathVariable Integer userId) {
+  Mono<UserDepartmentDTO> fetchUserAndDepartment(@PathVariable final Integer userId) {
     return userService.fetchUserAndDepartment(userId);
   }
 
