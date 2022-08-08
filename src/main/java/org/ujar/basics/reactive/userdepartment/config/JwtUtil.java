@@ -24,7 +24,7 @@ public class JwtUtil {
   }
 
   public Claims getClaimsFromToken(String authToken) {
-    String key = Base64.getEncoder().encodeToString(jwtTokenProperties.secret().getBytes(StandardCharsets.UTF_8));
+    String key = Base64.getEncoder().encodeToString(jwtTokenProperties.getSecret().getBytes(StandardCharsets.UTF_8));
     return Jwts.parserBuilder()
         .setSigningKey(key)
         .build()
@@ -42,7 +42,7 @@ public class JwtUtil {
     HashMap<String, Object> claims = new HashMap<>();
     claims.put("role", List.of(user.getRole()));
 
-    long expirationSeconds = jwtTokenProperties.expiration();
+    long expirationSeconds = jwtTokenProperties.getExpiration();
     Date creationDate = new Date();
     Date expirationDate = new Date(creationDate.getTime() + expirationSeconds * 1000);
 
@@ -51,7 +51,7 @@ public class JwtUtil {
         .setSubject(user.getName())
         .setIssuedAt(creationDate)
         .setExpiration(expirationDate)
-        .signWith(Keys.hmacShaKeyFor(jwtTokenProperties.secret().getBytes(StandardCharsets.UTF_8)))
+        .signWith(Keys.hmacShaKeyFor(jwtTokenProperties.getSecret().getBytes(StandardCharsets.UTF_8)))
         .compact();
   }
 }

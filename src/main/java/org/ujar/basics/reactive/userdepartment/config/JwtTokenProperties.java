@@ -10,4 +10,11 @@ import org.springframework.validation.annotation.Validated;
 @ConfigurationProperties("ujar.jwt.token")
 public record JwtTokenProperties(@NotNull String secret, @NotNull Long expiration) {
 
+  public String getSecret() {
+    return secret();
+  }
+
+  public Long getExpiration() {
+    return expiration();
+  }
 }
