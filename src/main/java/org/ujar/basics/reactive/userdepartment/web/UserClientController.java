@@ -20,13 +20,13 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("/client/users")
 @RequiredArgsConstructor
-public class UserClientController {
+class UserClientController {
 
   private final UserClient userClient;
 
   @GetMapping("/{userId}")
   @ApiResponses(@ApiResponse(code = 200, message = "Ok", response = User.class))
-  public Mono<ResponseEntity<User>> getUserById(@PathVariable String userId) {
+  Mono<ResponseEntity<User>> getUserById(@PathVariable String userId) {
     Mono<User> user = userClient.getUser(userId);
     return user.map(ResponseEntity::ok)
         .defaultIfEmpty(ResponseEntity.notFound().build());
@@ -34,14 +34,14 @@ public class UserClientController {
 
   @GetMapping
   @ApiResponses(@ApiResponse(code = 200, message = "Ok", response = User.class, responseContainer = "List"))
-  public Flux<User> getAllUsers() {
+  Flux<User> getAllUsers() {
     return userClient.getAllUsers();
   }
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   @ApiResponses(@ApiResponse(code = 201, message = "Created", response = User.class))
-  public Mono<User> create(@RequestBody User user) {
+  Mono<User> create(@RequestBody User user) {
     return userClient.createUser(user);
   }
 
