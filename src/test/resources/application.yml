@@ -44,5 +44,5 @@ spring :
 
 ujar:
   jwt:
-    secret: very-very-secret-key
+    secret: jwtapptokensecret
     expiration: 86400
