@@ -26,7 +26,7 @@ class UserClientController {
 
   @GetMapping("/{userId}")
   @ApiResponses(@ApiResponse(code = 200, message = "Ok", response = User.class))
-  Mono<ResponseEntity<User>> getUserById(@PathVariable String userId) {
+  Mono<ResponseEntity<User>> getUserById(@PathVariable final String userId) {
     Mono<User> user = userClient.getUser(userId);
     return user.map(ResponseEntity::ok)
         .defaultIfEmpty(ResponseEntity.notFound().build());
@@ -41,7 +41,7 @@ class UserClientController {
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   @ApiResponses(@ApiResponse(code = 201, message = "Created", response = User.class))
-  Mono<User> create(@RequestBody User user) {
+  Mono<User> create(@RequestBody final User user) {
     return userClient.createUser(user);
   }
 
