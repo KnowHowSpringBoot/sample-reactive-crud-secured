@@ -42,7 +42,8 @@ spring :
       hibernate.generate_statistics : false
     show-sql : false
 
-ujar:
-  jwt:
-    secret: jwtapptokensecret
-    expiration: 86400
+ujar :
+  jwt :
+    token :
+      secret : jwtapptokensecret
+      expiration : 86400

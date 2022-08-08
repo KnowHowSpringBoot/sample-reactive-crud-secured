@@ -124,7 +124,8 @@ management :
     info :
       enabled : true
 
-ujar:
-  jwt:
-    secret: ${JWT_TOKEN_SECRET:jwtapptokensecret}
-    expiration: 86400
+ujar :
+  jwt :
+    token :
+      secret : ${JWT_TOKEN_SECRET:jwtapptokensecret}
+      expiration : 86400
