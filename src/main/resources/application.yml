@@ -126,5 +126,5 @@ management :
 
 ujar:
   jwt:
-    secret: very-very-secret-key
+    secret: ${JWT_TOKEN_SECRET:jwtapptokensecret}
     expiration: 86400
