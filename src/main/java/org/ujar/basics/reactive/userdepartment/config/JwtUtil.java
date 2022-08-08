@@ -8,16 +8,15 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Value;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.ujar.basics.reactive.userdepartment.entity.User;
 
 @Component
+@RequiredArgsConstructor
 public class JwtUtil {
-  @Value("${ujar.jwt.secret}")
-  private String secret;
-  @Value("${ujar.jwt.expiration}")
-  private String expirationTime;
+
+  private final JwtTokenProperties jwtTokenProperties;
 
   public String extractUsername(String authToken) {
     return getClaimsFromToken(authToken)
@@ -25,7 +24,7 @@ public class JwtUtil {
   }
 
   public Claims getClaimsFromToken(String authToken) {
-    String key = Base64.getEncoder().encodeToString(secret.getBytes(StandardCharsets.UTF_8));
+    String key = Base64.getEncoder().encodeToString(jwtTokenProperties.secret().getBytes(StandardCharsets.UTF_8));
     return Jwts.parserBuilder()
         .setSigningKey(key)
         .build()
@@ -43,7 +42,7 @@ public class JwtUtil {
     HashMap<String, Object> claims = new HashMap<>();
     claims.put("role", List.of(user.getRole()));
 
-    long expirationSeconds = Long.parseLong(expirationTime);
+    long expirationSeconds = jwtTokenProperties.expiration();
     Date creationDate = new Date();
     Date expirationDate = new Date(creationDate.getTime() + expirationSeconds * 1000);
 
@@ -52,7 +51,7 @@ public class JwtUtil {
         .setSubject(user.getName())
         .setIssuedAt(creationDate)
         .setExpiration(expirationDate)
-        .signWith(Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8)))
+        .signWith(Keys.hmacShaKeyFor(jwtTokenProperties.secret().getBytes(StandardCharsets.UTF_8)))
         .compact();
   }
 }
