@@ -1,4 +1,4 @@
-package org.ujar.basics.reactive.userdepartment.config;
+package org.ujar.basics.reactive.acmedepartments.config;
 
 import java.time.Duration;
 import org.ehcache.config.builders.CacheConfigurationBuilder;
@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernatePropertiesCustomi
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.ujar.basics.reactive.userdepartment.entity.User;
+import org.ujar.basics.reactive.acmedepartments.entity.User;
 import org.ujar.boot.starter.cache.CacheProperties;
 
 @Configuration

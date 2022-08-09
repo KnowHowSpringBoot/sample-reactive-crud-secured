@@ -1,13 +1,13 @@
-# User CRUD - Reactive app
+# User Departments - Reactive app
 
-[![Build Status](https://drone.ujar.org/api/badges/ujar-org/basics-reactive-user-department/status.svg?ref=refs/heads/main)](https://drone.ujar.org/ujar-org/basics-reactive-user-department)
-[![Quality Gate Status](https://sonarqube.ujar.org/api/project_badges/measure?project=ujar-org%3Abasics-reactive-user-department&metric=alert_status&token=d12412b5ba6e0f520aea380464afde43241167c9)](https://sonarqube.ujar.org/dashboard?id=ujar-org%3Abasics-reactive-user-department)
+[![Build Status](https://drone.ujar.org/api/badges/ujar-org/basics-reactive-acmedepartments/status.svg?ref=refs/heads/main)](https://drone.ujar.org/ujar-org/basics-reactive-acmedepartments)
+[![Quality Gate Status](https://sonarqube.ujar.org/api/project_badges/measure?project=ujar-org%3Abasics-reactive-acmedepartments&metric=alert_status&token=d12412b5ba6e0f520aea380464afde43241167c9)](https://sonarqube.ujar.org/dashboard?id=ujar-org%3Abasics-reactive-acmedepartments)
 
 Minimal Spring Boot based reactive CRUD example, which manages user entity (including Swagger UI).
 
 ## Technology stack
 
-Java 17, Spring Boot
+Java 17, Spring Boot, Webflux
 
 ## Prerequisites
 
@@ -30,8 +30,8 @@ This application is a [Spring Boot](https://spring.io/guides/gs/spring-boot) app
 using [Maven](https://spring.io/guides/gs/maven/). You can build a jar file and run it from the command line:
 
 ```
-git clone https://github.com/ujar-org/basics-reactive-user-department.git
-cd basics-reactive-user-department
+git clone https://github.com/ujar-org/basics-reactive-acmedepartments.git
+cd basics-reactive-acmedepartments
 ./mvnw package
 java -jar target/*.jar
 ```
@@ -43,7 +43,7 @@ You can then access Swagger UI here: http://localhost:8080/swagger-ui.html
 1) On the command line
 
 ```
-git clone https://github.com/ujar-org/basics-reactive-user-department.git
+git clone https://github.com/ujar-org/basics-reactive-acmedepartments.git
 ```
 
 2) Inside IDE
@@ -62,7 +62,7 @@ Visit [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.h
 The code follows [Google Code Conventions](https://google.github.io/styleguide/javaguide.html). Code
 quality is measured by:
 
-- [Sonarqube](https://sonarqube.ujar.org/dashboard?id=ujar-org%3Abasics-reactive-user-department)
+- [Sonarqube](https://sonarqube.ujar.org/dashboard?id=ujar-org%3Abasics-reactive-acmedepartments)
 - [PMD](https://pmd.github.io/)
 - [CheckStyle](https://checkstyle.sourceforge.io/)
 - [SpotBugs](https://spotbugs.github.io/)

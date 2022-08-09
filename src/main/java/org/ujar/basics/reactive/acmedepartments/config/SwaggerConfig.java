@@ -1,4 +1,4 @@
-package org.ujar.basics.reactive.userdepartment.config;
+package org.ujar.basics.reactive.acmedepartments.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
