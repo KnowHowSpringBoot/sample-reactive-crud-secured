@@ -1,4 +1,4 @@
-package org.ujar.basics.reactive.userdepartment.dto;
+package org.ujar.basics.reactive.acmedepartments.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

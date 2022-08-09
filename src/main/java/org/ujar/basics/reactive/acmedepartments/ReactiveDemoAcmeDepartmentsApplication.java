@@ -1,11 +1,11 @@
-package org.ujar.basics.reactive.userdepartment;
+package org.ujar.basics.reactive.acmedepartments;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ReactiveUserManagementApplication {
+public class ReactiveDemoAcmeDepartmentsApplication {
   public static void main(String[] args) {
-    SpringApplication.run(ReactiveUserManagementApplication.class, args);
+    SpringApplication.run(ReactiveDemoAcmeDepartmentsApplication.class, args);
   }
 }

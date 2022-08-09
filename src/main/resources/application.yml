@@ -17,7 +17,7 @@ info :
 
 spring :
   application :
-    name : basics-reactive-user-department
+    name : basics-reactive-acmedepartments
   mvc :
     pathmatch :
       matching-strategy : ANT_PATH_MATCHER

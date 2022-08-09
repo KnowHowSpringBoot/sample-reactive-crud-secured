@@ -1,4 +1,4 @@
-package org.ujar.basics.reactive.userdepartment.entity;
+package org.ujar.basics.reactive.acmedepartments.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

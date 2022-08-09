@@ -1,4 +1,4 @@
-package org.ujar.basics.reactive.userdepartment.service;
+package org.ujar.basics.reactive.acmedepartments.service;
 
 import java.util.List;
 import java.util.function.BiFunction;
@@ -6,11 +6,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.ujar.basics.reactive.userdepartment.dto.UserDepartmentDTO;
-import org.ujar.basics.reactive.userdepartment.entity.Department;
-import org.ujar.basics.reactive.userdepartment.entity.User;
-import org.ujar.basics.reactive.userdepartment.repository.DepartmentRepository;
-import org.ujar.basics.reactive.userdepartment.repository.UserRepository;
+import org.ujar.basics.reactive.acmedepartments.dto.UserDepartmentDTO;
+import org.ujar.basics.reactive.acmedepartments.entity.Department;
+import org.ujar.basics.reactive.acmedepartments.entity.User;
+import org.ujar.basics.reactive.acmedepartments.repository.DepartmentRepository;
+import org.ujar.basics.reactive.acmedepartments.repository.UserRepository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
