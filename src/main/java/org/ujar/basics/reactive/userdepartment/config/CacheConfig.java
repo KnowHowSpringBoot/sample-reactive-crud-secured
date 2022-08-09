@@ -21,7 +21,7 @@ class CacheConfig {
   private final javax.cache.configuration.Configuration<Object, Object> jcacheConfiguration;
 
   CacheConfig(CacheProperties cacheProperties) {
-    var ehcacheProperties = cacheProperties.getEhcache();
+    final var ehcacheProperties = cacheProperties.getEhcache();
     jcacheConfiguration =
         Eh107Configuration.fromEhcacheCacheConfiguration(
             CacheConfigurationBuilder
