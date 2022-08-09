@@ -3,7 +3,6 @@ package org.ujar.basics.reactive.userdepartment.web;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,10 +22,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/users")
-@RequiredArgsConstructor
-class UserController {
-
-  private final UserService userService;
+record UserController(UserService userService) {
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)

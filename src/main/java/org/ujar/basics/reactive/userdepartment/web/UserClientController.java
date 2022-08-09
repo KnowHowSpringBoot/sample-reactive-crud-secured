@@ -2,7 +2,6 @@ package org.ujar.basics.reactive.userdepartment.web;
 
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,10 +18,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/client/users")
-@RequiredArgsConstructor
-class UserClientController {
-
-  private final UserClient userClient;
+record UserClientController(UserClient userClient) {
 
   @GetMapping("/{userId}")
   @ApiResponses(@ApiResponse(code = 200, message = "Ok", response = User.class))
