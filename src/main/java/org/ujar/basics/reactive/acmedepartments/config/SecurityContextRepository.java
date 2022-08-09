@@ -1,4 +1,4 @@
-package org.ujar.basics.reactive.userdepartment.config;
+package org.ujar.basics.reactive.acmedepartments.config;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

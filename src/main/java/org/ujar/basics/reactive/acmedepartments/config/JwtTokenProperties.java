@@ -1,4 +1,4 @@
-package org.ujar.basics.reactive.userdepartment.config;
+package org.ujar.basics.reactive.acmedepartments.config;
 
 import javax.validation.constraints.NotNull;
 import org.springframework.boot.context.properties.ConfigurationProperties;

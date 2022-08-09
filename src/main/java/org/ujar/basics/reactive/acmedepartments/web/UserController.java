@@ -1,4 +1,4 @@
-package org.ujar.basics.reactive.userdepartment.web;
+package org.ujar.basics.reactive.acmedepartments.web;
 
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.ujar.basics.reactive.userdepartment.dto.UserDepartmentDTO;
-import org.ujar.basics.reactive.userdepartment.entity.User;
-import org.ujar.basics.reactive.userdepartment.service.UserService;
+import org.ujar.basics.reactive.acmedepartments.dto.UserDepartmentDTO;
+import org.ujar.basics.reactive.acmedepartments.entity.User;
+import org.ujar.basics.reactive.acmedepartments.service.UserService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

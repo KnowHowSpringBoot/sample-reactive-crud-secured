@@ -1,11 +1,11 @@
-package org.ujar.basics.reactive.userdepartment;
+package org.ujar.basics.reactive.acmedepartments;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ReactiveUserManagementApplicationTest {
+class ReactiveDemoAcmeDepartmentsApplicationTest {
 
   @Test
   void contextLoad() {

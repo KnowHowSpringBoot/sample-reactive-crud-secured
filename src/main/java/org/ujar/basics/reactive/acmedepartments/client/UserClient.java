@@ -1,10 +1,10 @@
-package org.ujar.basics.reactive.userdepartment.client;
+package org.ujar.basics.reactive.acmedepartments.client;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.ujar.basics.reactive.userdepartment.entity.User;
+import org.ujar.basics.reactive.acmedepartments.entity.User;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

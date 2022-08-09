@@ -1,8 +1,8 @@
-package org.ujar.basics.reactive.userdepartment.repository;
+package org.ujar.basics.reactive.acmedepartments.repository;
 
 import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
-import org.ujar.basics.reactive.userdepartment.entity.User;
+import org.ujar.basics.reactive.acmedepartments.entity.User;
 import reactor.core.publisher.Flux;
 
 public interface UserRepository extends ReactiveCrudRepository<User, Integer> {

@@ -5,7 +5,7 @@ build :
 
 spring :
   application :
-    name : basics-reactive-user-department
+    name : basics-reactive-acmedepartments
   devtools :
     add-properties : false
     restart :
