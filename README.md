@@ -1,7 +1,7 @@
 # User Departments - Reactive app
 
 [![Build Status](https://drone.ujar.org/api/badges/ujar-org/basics-reactive-acmedepartments/status.svg?ref=refs/heads/main)](https://drone.ujar.org/ujar-org/basics-reactive-acmedepartments)
-[![Quality Gate Status](https://sonarqube.ujar.org/api/project_badges/measure?project=ujar-org%3Abasics-reactive-acmedepartments&metric=alert_status&token=d12412b5ba6e0f520aea380464afde43241167c9)](https://sonarqube.ujar.org/dashboard?id=ujar-org%3Abasics-reactive-acmedepartments)
+[![Quality Gate Status](https://sonarqube.ujar.org/api/project_badges/measure?project=ujar-org%3Abasics-reactive-acmedepartments&metric=alert_status&token=d5f9d10b327a765485133e3afb644075eea358c9)](https://sonarqube.ujar.org/dashboard?id=ujar-org%3Abasics-reactive-acmedepartments)
 
 Minimal Spring Boot based reactive CRUD example, which manages user entity (including Swagger UI).
 
