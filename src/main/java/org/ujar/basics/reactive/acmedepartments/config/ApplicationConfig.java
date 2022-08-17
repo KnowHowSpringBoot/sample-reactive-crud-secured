@@ -10,7 +10,7 @@ import org.ujar.boot.starter.logbook.LogbookResponseOnStatus;
 @LogbookResponseOnStatus
 @LogbookJsonBodyFilter
 @EnableTransactionManagement
-@EnableConfigurationProperties(JwtTokenProperties.class)
+@EnableConfigurationProperties({ProgramBuildInfoProperties.class, JwtTokenProperties.class})
 class ApplicationConfig {
 
 }
