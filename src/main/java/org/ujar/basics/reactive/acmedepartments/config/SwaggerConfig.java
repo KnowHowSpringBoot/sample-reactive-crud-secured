@@ -15,14 +15,14 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2WebFlux;
 class SwaggerConfig {
 
   @Bean
-  Docket springfoxSwaggerApiDocket() {
+  Docket springfoxSwaggerApiDocket(ProgramBuildInfoProperties buildInfo) {
     return new Docket(DocumentationType.SWAGGER_2)
         .apiInfo(apiInfo())
         .select()
         .apis(RequestHandlerSelectors.any())
         .paths(PathSelectors.any())
         .build()
-        .pathMapping("/");
+        .pathMapping(buildInfo.relativePath());
   }
 
   private ApiInfo apiInfo() {
