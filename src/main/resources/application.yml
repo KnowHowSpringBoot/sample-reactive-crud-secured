@@ -1,6 +1,6 @@
 build :
   description : '@project.description@'
-  relative-path : ${SWAGGER_UI_RELATIVE_PATH:}
+  relative-path : ${SWAGGER_UI_RELATIVE_PATH:/}
   version : '@project.version@'
 
 git :
