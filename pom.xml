@@ -4,7 +4,7 @@
 
     <groupId>org.ujar.basics.reactive</groupId>
     <artifactId>reactive-acmedepartments</artifactId>
-    <version>0.9.0-SNAPSHOT</version>
+    <version>0.10.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>basics-reactive-acmedepartments</name>
@@ -39,7 +39,7 @@
     <parent>
         <groupId>org.ujar.parent</groupId>
         <artifactId>ujar-parent-pom</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
+        <version>0.10.0-SNAPSHOT</version>
     </parent>
 
     <properties>
