@@ -1,7 +1,7 @@
 # User Departments - Reactive app
 
-[![Build Status](https://drone.ujar.org/api/badges/ujar-org/basics-reactive-acmedepartments/status.svg?ref=refs/heads/main)](https://drone.ujar.org/ujar-org/basics-reactive-acmedepartments)
-[![Quality Gate Status](https://sonarqube.ujar.org/api/project_badges/measure?project=ujar-org%3Abasics-reactive-acmedepartments&metric=alert_status&token=d5f9d10b327a765485133e3afb644075eea358c9)](https://sonarqube.ujar.org/dashboard?id=ujar-org%3Abasics-reactive-acmedepartments)
+[![Build Status](https://drone.c2a2.com/api/badges/ujar-org/basics-reactive-acmedepartments/status.svg?ref=refs/heads/main)](https://drone.c2a2.com/ujar-org/basics-reactive-acmedepartments)
+[![Quality Gate Status](https://sonarqube.c2a2.com/api/project_badges/measure?project=ujar-org%3Abasics-reactive-acmedepartments&metric=alert_status&token=d5f9d10b327a765485133e3afb644075eea358c9)](https://sonarqube.c2a2.com/dashboard?id=ujar-org%3Abasics-reactive-acmedepartments)
 
 Minimal Spring Boot based reactive CRUD example, which manages user entity (including Swagger UI).
 
@@ -62,7 +62,7 @@ Visit [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.h
 The code follows [Google Code Conventions](https://google.github.io/styleguide/javaguide.html). Code
 quality is measured by:
 
-- [Sonarqube](https://sonarqube.ujar.org/dashboard?id=ujar-org%3Abasics-reactive-acmedepartments)
+- [Sonarqube](https://sonarqube.c2a2.com/dashboard?id=ujar-org%3Abasics-reactive-acmedepartments)
 - [PMD](https://pmd.github.io/)
 - [CheckStyle](https://checkstyle.sourceforge.io/)
 - [SpotBugs](https://spotbugs.github.io/)
