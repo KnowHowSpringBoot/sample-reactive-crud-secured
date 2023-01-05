@@ -1,4 +1,4 @@
-FROM docker-registry.ujar.org/ujar/openjdk:17.0.2-slim
+FROM docker-registry.c2a2.com/ujar/openjdk:17.0.2-slim
 
 WORKDIR /app
 
