@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.ujar.basics.reactive</groupId>
+    <groupId>org.ujar.bs.reactive</groupId>
     <artifactId>bs-reactor-acmedepartments</artifactId>
     <version>0.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -48,7 +48,7 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <sonar.exclusions>**/*Application.java</sonar.exclusions>
         <sonar.coverage.exclusions>**/*Config*.java,**/*Properties.java,**/*Test.java,**/Test*.java</sonar.coverage.exclusions>
-        <start-class>org.ujar.basics.reactive.acmedepartments.ReactiveDemoAcmeDepartmentsApplication</start-class>
+        <start-class>org.ujar.bs.reactive.acmedepartments.ReactiveDemoAcmeDepartmentsApplication</start-class>
     </properties>
 
     <dependencies>
