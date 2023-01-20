@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.ujar.basics.reactive</groupId>
-    <artifactId>reactive-acmedepartments</artifactId>
+    <artifactId>bs-reactor-acmedepartments</artifactId>
     <version>0.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>basics-reactive-acmedepartments</name>
+    <name>bs-reactor-acmedepartments</name>
     <description>Minimal Spring Boot based reactive example, which manages user entity (including Swagger UI).</description>
     <licenses>
         <license>
@@ -32,7 +32,7 @@
     </developers>
 
     <scm>
-        <connection>scm:git:https://github.com/ujar-org/basics-reactive-acmedepartments.git</connection>
+        <connection>scm:git:https://github.com/ujar-org/bs-reactor-acmedepartments.git</connection>
         <tag>HEAD</tag>
     </scm>
 
