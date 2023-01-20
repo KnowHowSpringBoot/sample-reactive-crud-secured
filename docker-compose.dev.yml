@@ -1,12 +1,12 @@
-version: '3'
-services:
-  postgres:
-    image: "postgres:13.5"
-    container_name: bs-reactor-dev-acmedepartments-postgres
-    restart: unless-stopped
+version : '3'
+services :
+  postgres :
+    image : "postgres:13.5"
+    container_name : bs-reactor-dev-acmedepartments-postgres
+    restart : unless-stopped
     ports :
       - "5432:5432"
-    environment:
+    environment :
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=sa_test_db
