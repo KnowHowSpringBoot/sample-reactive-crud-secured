@@ -17,7 +17,7 @@ jobs:
         with:
           pattern: '^(feat|fix|docs|style|refactor|perf|test|chore): .+'
           flags: 'gm'
-          error: 'Your commit title did not follow semantic versioning. Please see https://github.com/ujar-org/basics-reactive-acmedepartments/blob/main/SEMANTIC_COMMITS.md'
+          error: 'Your commit title did not follow semantic versioning. Please see https://github.com/ujar-org/bs-reactor-acmedepartments/blob/main/SEMANTIC_COMMITS.md'
       - name: Check Line Length
         uses: gsactions/commit-message-checker@v1
         with:

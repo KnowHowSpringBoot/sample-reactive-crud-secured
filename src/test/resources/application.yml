@@ -5,7 +5,7 @@ build :
 
 spring :
   application :
-    name : basics-reactive-acmedepartments
+    name : bs-reactor-acmedepartments
   devtools :
     add-properties : false
     restart :
