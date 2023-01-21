@@ -2,12 +2,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.ujar.bs.reactor</groupId>
-    <artifactId>bs-reactor-acmedepartments</artifactId>
+    <groupId>org.ujar.bs.nb</groupId>
+    <artifactId>bs-nb-reactor-acmedepartments</artifactId>
     <version>0.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>bs-reactor-acmedepartments</name>
+    <name>bs-nb-reactor-acmedepartments</name>
     <description>Minimal Spring Boot based reactive example, which manages user entity (including Swagger UI).</description>
     <licenses>
         <license>
@@ -32,7 +32,7 @@
     </developers>
 
     <scm>
-        <connection>scm:git:https://github.com/ujar-org/bs-reactor-acmedepartments.git</connection>
+        <connection>scm:git:https://github.com/ujar-org/bs-nb-reactor-acmedepartments.git</connection>
         <tag>HEAD</tag>
     </scm>
 
@@ -48,7 +48,7 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <sonar.exclusions>**/*Application.java</sonar.exclusions>
         <sonar.coverage.exclusions>**/*Config*.java,**/*Properties.java,**/*Test.java,**/Test*.java</sonar.coverage.exclusions>
-        <start-class>org.ujar.bs.reactor.acmedepartments.ReactiveDemoAcmeDepartmentsApplication</start-class>
+        <start-class>org.ujar.bs.nb.reactor.acmedepartments.ReactorDemoAcmeDepartmentsApplication</start-class>
     </properties>
 
     <dependencies>

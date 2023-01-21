@@ -1,7 +1,7 @@
 # User Departments - Reactive app
 
-[![Build Status](https://drone.c2a2.com/api/badges/ujar-org/bs-reactor-acmedepartments/status.svg?ref=refs/heads/main)](https://drone.c2a2.com/ujar-org/bs-reactor-acmedepartments)
-[![Quality Gate Status](https://sonarqube.c2a2.com/api/project_badges/measure?project=ujar-org%3Abs-reactor-acmedepartments&metric=alert_status&token=d5f9d10b327a765485133e3afb644075eea358c9)](https://sonarqube.c2a2.com/dashboard?id=ujar-org%3Abs-reactor-acmedepartments)
+[![Build Status](https://drone.c2a2.com/api/badges/ujar-org/bs-nb-reactor-acmedepartments/status.svg?ref=refs/heads/main)](https://drone.c2a2.com/ujar-org/bs-nb-reactor-acmedepartments)
+[![Quality Gate Status](https://sonarqube.c2a2.com/api/project_badges/measure?project=ujar-org%3Abs-nb-reactor-acmedepartments&metric=alert_status&token=d5f9d10b327a765485133e3afb644075eea358c9)](https://sonarqube.c2a2.com/dashboard?id=ujar-org%3Abs-nb-reactor-acmedepartments)
 
 Minimal Spring Boot based reactive CRUD example, which manages user entity (including Swagger UI).
 
@@ -30,8 +30,8 @@ This application is a [Spring Boot](https://spring.io/guides/gs/spring-boot) app
 using [Maven](https://spring.io/guides/gs/maven/). You can build a jar file and run it from the command line:
 
 ```
-git clone https://github.com/ujar-org/bs-reactor-acmedepartments.git
-cd bs-reactor-acmedepartments
+git clone https://github.com/ujar-org/bs-nb-reactor-acmedepartments.git
+cd bs-nb-reactor-acmedepartments
 ./mvnw package
 java -jar target/*.jar
 ```
@@ -43,7 +43,7 @@ You can then access Swagger UI here: http://localhost:8080/swagger-ui.html
 1) On the command line
 
 ```
-git clone https://github.com/ujar-org/bs-reactor-acmedepartments.git
+git clone https://github.com/ujar-org/bs-nb-reactor-acmedepartments.git
 ```
 
 2) Inside IDE
@@ -62,7 +62,7 @@ Visit [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.h
 The code follows [Google Code Conventions](https://google.github.io/styleguide/javaguide.html). Code
 quality is measured by:
 
-- [Sonarqube](https://sonarqube.c2a2.com/dashboard?id=ujar-org%3Abs-reactor-acmedepartments)
+- [Sonarqube](https://sonarqube.c2a2.com/dashboard?id=ujar-org%3Abs-nb-reactor-acmedepartments)
 - [PMD](https://pmd.github.io/)
 - [CheckStyle](https://checkstyle.sourceforge.io/)
 - [SpotBugs](https://spotbugs.github.io/)
