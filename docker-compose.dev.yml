@@ -2,7 +2,7 @@ version : '3'
 services :
   postgres :
     image : "postgres:13.5"
-    container_name : bs-reactor-dev-acmedepartments-postgres
+    container_name : bs-nb-reactor-dev-acmedepartments-postgres
     restart : unless-stopped
     ports :
       - "5432:5432"
@@ -11,7 +11,7 @@ services :
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=sa_test_db
   prometheus :
-    container_name : bs-reactor-dev-acmedepartments-prometheus
+    container_name : bs-nb-reactor-dev-acmedepartments-prometheus
     image : prom/prometheus:v2.32.1
     volumes :
       - ./docker/prometheus/:/etc/prometheus/
@@ -21,7 +21,7 @@ services :
     # docker/grafana/provisioning/datasources/datasource.yml
     network_mode : 'host' # to test locally running service
   grafana :
-    container_name : bs-reactor-dev-acmedepartments-grafana
+    container_name : bs-nb-reactor-dev-acmedepartments-grafana
     image : grafana/grafana:8.3.3
     volumes :
       - ./docker/grafana/provisioning/:/etc/grafana/provisioning/

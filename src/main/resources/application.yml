@@ -17,7 +17,7 @@ info :
 
 spring :
   application :
-    name : bs-reactor-acmedepartments
+    name : bs-nb-reactor-acmedepartments
   mvc :
     pathmatch :
       matching-strategy : ANT_PATH_MATCHER
