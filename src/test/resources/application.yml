@@ -5,7 +5,7 @@ build :
 
 spring :
   application :
-    name : bs-reactor-acmedepartments
+    name : bs-nb-reactor-acmedepartments
   devtools :
     add-properties : false
     restart :
