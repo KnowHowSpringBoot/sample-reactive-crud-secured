@@ -91,7 +91,7 @@ steps :
       - publish-snapshot-package
     image : plugins/docker
     settings :
-      dockerfile : Dockerfile
+      dockerfile : .drone/c2a2/Dockerfile
       context : ./
       storage_driver : vfs
       username :
