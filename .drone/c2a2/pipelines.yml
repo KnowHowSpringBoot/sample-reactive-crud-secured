@@ -3,11 +3,9 @@ name : CI
 type : docker
 
 trigger :
-  branch :
-    - develop
-    - feature/*
   event :
     - push
+    - tag
 
 volumes :
   - name : m2cache
@@ -39,10 +37,9 @@ steps :
       - mvn com.github.spotbugs:spotbugs-maven-plugin:check -P default -Dspotbugs.xmlOutput=true -Dspotbugs.failOnError=true -Dspotbugs.includeTests=true  --file pom.xml -s ../maven-settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
       - mvn org.jacoco:jacoco-maven-plugin:prepare-agent integration-test package org.jacoco:jacoco-maven-plugin:report sonar:sonar -P default -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_TOKEN -Dsonar.projectKey=ujar-org:bs-nb-reactor-acmedepartments -Dsonar.projectName=ujar-org:bs-nb-reactor-acmedepartments --batch-mode  --file pom.xml -s ../maven-settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
     when :
-      branch :
-        include :
-          - feature/*
-          - develop
+      event :
+        - push
+        - tag
 
   - name : publish-snapshot-package
     depends_on :
@@ -81,7 +78,8 @@ steps :
     commands :
       - mvn deploy -DskipTests=true -Dcheckstyle.skip=true -s ../maven-settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD -DaltDeploymentRepository=ujar-releases-repository::default::https://nexus.c2a2.com/repository/maven-releases
     when :
-      event : tag
+      ref :
+        - refs/tags/*
 
   - name : docker-build-dev-image
     depends_on :
