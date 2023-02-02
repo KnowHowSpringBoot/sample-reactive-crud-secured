@@ -118,7 +118,7 @@ steps :
       repo : docker-registry.c2a2.com/ujar/bs-nb-reactor-acmedepartments
       registry : docker-registry.c2a2.com
       tags :
-        - 0.1.0
+        - ${DRONE_TAG}
     when :
       ref :
         - refs/tags/*
