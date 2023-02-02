@@ -41,7 +41,7 @@ steps :
         - push
         - tag
 
-  - name : publish-snapshot-package
+  - name : publish-snapshot-jar
     depends_on :
       - build
     image : docker-registry.c2a2.com/ujar/maven:3-openjdk-17-slim
@@ -62,7 +62,7 @@ steps :
           - feature/*
           - develop
 
-  - name : publish-release-package
+  - name : publish-release-jar
     depends_on :
       - build
     image : docker-registry.c2a2.com/ujar/maven:3-openjdk-17-slim
@@ -81,9 +81,9 @@ steps :
       ref :
         - refs/tags/*
 
-  - name : docker-build-dev-image
+  - name : build-container-snapshot-image
     depends_on :
-      - publish-snapshot-package
+      - publish-snapshot-jar
     image : plugins/docker
     settings :
       dockerfile : .drone/c2a2/Dockerfile
