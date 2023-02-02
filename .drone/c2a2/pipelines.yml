@@ -103,6 +103,26 @@ steps :
           - feature/*
           - develop
 
+  - name : build-container-release-image
+    depends_on :
+      - publish-release-jar
+    image : plugins/docker
+    settings :
+      dockerfile : .drone/c2a2/Dockerfile
+      context : ./
+      storage_driver : vfs
+      username :
+        from_secret : DOCKER_USERNAME
+      password :
+        from_secret : DOCKER_PASSWORD
+      repo : docker-registry.c2a2.com/ujar/bs-nb-reactor-acmedepartments
+      registry : docker-registry.c2a2.com
+      tags :
+        - 0.1.0
+    when :
+      ref :
+        - refs/tags/*
+
 services :
   - name : db
     image : postgres:13.5
