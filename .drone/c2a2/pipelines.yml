@@ -76,7 +76,7 @@ steps :
       DEPLOYER_PASSWORD :
         from_secret : DEPLOYER_PASSWORD
     commands :
-      - mvn deploy -DskipTests=true -Dcheckstyle.skip=true -s ../maven-settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD -DaltDeploymentRepository=ujar-releases-repository::default::https://nexus.c2a2.com/repository/maven-releases
+      - mvn deploy -DskipTests=true -Dcheckstyle.skip=true -s ../maven-settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD -DaltReleaseDeploymentRepository=ujar-releases-repository::default::https://nexus.c2a2.com/repository/maven-releases
     when :
       ref :
         - refs/tags/*
