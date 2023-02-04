@@ -134,7 +134,7 @@ services :
 ---
 
 kind : pipeline
-name : Prepare Release Tag
+name : CreateReleaseManually
 type : docker
 trigger :
   event :
