@@ -168,6 +168,7 @@ steps :
         git commit -a -m "feat: prepare new release $${TAG}"
       - git tag ${TAG} && git push origin ${TAG}
       - echo "✅ Release tag ${TAG} was created."
+      - sleep 10
       - git tag -d ${TAG} && git checkout ${DRONE_COMMIT_BRANCH} && git branch -D v${TAG}
       - mvn versions:set -DnewVersion=$${NEXT_SNAPSHOT}
       - mvn versions:update-parent -DallowSnapshots=true
