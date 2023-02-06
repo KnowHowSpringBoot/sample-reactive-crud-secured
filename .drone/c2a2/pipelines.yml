@@ -156,7 +156,7 @@ steps :
         path : /root/.m2
     commands :
       - echo Prepare new release tag ${TAG}
-      - mkdir ${TAG} # easy way to mark tag param required
+      - mkdir ${TAG}
       - rmdir ${TAG}
       - export NEXT_SNAPSHOT=$(increment_version -m ${TAG})-SNAPSHOT
       - git remote set-url --push origin ${DRONE_GIT_SSH_URL}
