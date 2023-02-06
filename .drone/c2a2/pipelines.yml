@@ -161,13 +161,16 @@ steps :
       - export NEXT_SNAPSHOT=$(increment_version -m ${TAG})-SNAPSHOT
       - git remote set-url --push origin ${DRONE_GIT_SSH_URL}
       - git checkout -b v${TAG}
+      - mvn versions:set -DremoveSnapshot
       - mvn versions:set -DnewVersion=${TAG}
+      - mvn versions:update-parent
       - >-
-        git commit -a -m "feat: create new $${TAG}"
+        git commit -a -m "feat: prepare new release $${TAG}"
       - git tag ${TAG} && git push origin ${TAG}
       - echo "✅ Release tag ${TAG} was created."
       - git tag -d ${TAG} && git checkout ${DRONE_COMMIT_BRANCH} && git branch -D v${TAG}
       - mvn versions:set -DnewVersion=$${NEXT_SNAPSHOT}
+      - mvn versions:update-parent -DallowSnapshots=true
       - >-
         git commit -a -m "feat: create new $${NEXT_SNAPSHOT}"
       - git push origin ${DRONE_COMMIT_BRANCH}
