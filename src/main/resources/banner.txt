@@ -6,3 +6,4 @@ ${AnsiColor.GREEN}  \__,_|  \____/   \__,_| |_|
 ${AnsiColor.BLUE} ===============================
 ${AnsiColor.BLUE}  User management REST API
 ${AnsiColor.BLUE} ===============================
+${AnsiColor.BLACK}

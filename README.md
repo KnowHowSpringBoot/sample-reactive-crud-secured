@@ -4,13 +4,13 @@ Minimal Spring Boot based reactive CRUD example, which manages user entity (incl
 
 ## Technology stack
 
-Java 17, Spring Boot, Webflux
+Java 19, Spring Boot, Webflux, Postgres, Flyway, Springfox
 
 ## Prerequisites
 
 The following items should be installed in your system:
 
-* Java 17 or newer.
+* Java 19 or newer.
 * git command line tool (https://help.github.com/articles/set-up-git)
 * Your preferred IDE (IDEA preferably)
 
@@ -27,20 +27,26 @@ This application is a [Spring Boot](https://spring.io/guides/gs/spring-boot) app
 using [Maven](https://spring.io/guides/gs/maven/). You can build a jar file and run it from the command line:
 
 ```
-git clone https://github.com/ujar-org/bs-nb-reactor-acmedepartments.git
-cd bs-nb-reactor-acmedepartments
+git clone https://github.com/ujar-org/sample-webflux-crud-secured.git
+cd sample-webflux-crud-secured
 ./mvnw package
 java -jar target/*.jar
 ```
 
-You can then access Swagger UI here: http://localhost:8080/swagger-ui.html
+You might also want to use Maven's `spring-boot:run` goal - applications run in an exploded form, as they do in your IDE:
+
+```
+./mvnw spring-boot:run -Dspring-boot.run.profiles=local -P dev
+```
+
+Now you can access to the Swagger UI here: http://localhost:8080/swagger-ui.html
 
 ### Working with Application in your IDE
 
 1) On the command line
 
 ```
-git clone https://github.com/ujar-org/bs-nb-reactor-acmedepartments.git
+git clone https://github.com/ujar-org/sample-webflux-crud-secured.git
 ```
 
 2) Inside IDE
@@ -69,5 +75,18 @@ quality is measured by:
 This project has standard JUnit tests. To run them execute this command:
 
 ```text
-./mvnw test -P testcontainers-support
+./mvnw verify -P testcontainers-support
 ```
+
+## Versioning
+
+Project uses a three-segment [CalVer](https://calver.org/) scheme, with a short year in the major version slot, short month in the minor version slot, and micro/patch version in the third
+and final slot.
+
+```
+YY.MM.MICRO
+```
+
+1. **YY** - short year - 6, 16, 106
+1. **MM** - short month - 1, 2 ... 11, 12
+1. **MICRO** -  "patch" segment
