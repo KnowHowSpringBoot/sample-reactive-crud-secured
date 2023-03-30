@@ -1,7 +1,8 @@
-FROM docker-registry.c2a2.com/ujar/openjdk:17.0.2-slim
+FROM docker-registry.c2a2.com/ujar/openjdk:19-slim
+ARG BUILD_VERSION
+ENV APPLICATION_BUILD_VERSION=$BUILD_VERSION
+WORKDIR /opt/app
 
-WORKDIR /app
-
-COPY ./target/*.jar /app/app.jar
-ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -Duser.timezone=UTC -jar /app/app.jar"]
+COPY ./target/*.jar /opt/opt/app/app.jar
+ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -Duser.timezone=UTC -jar /opt/app/app.jar"]
 EXPOSE 8080

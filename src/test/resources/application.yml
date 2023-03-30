@@ -1,11 +1,6 @@
-build :
-  description : '@project.description@'
-  relative-path : ''
-  version : '@project.version@'
-
 spring :
   application :
-    name : bs-nb-reactor-acmedepartments
+    name : sample-webflux-crud-secured
   devtools :
     add-properties : false
     restart :
@@ -13,11 +8,11 @@ spring :
     livereload :
       enabled : false
   r2dbc :
-    url : ${R2DBC_DATASOURCE_URL:r2dbc:tc:postgresql:///sa_test_db?TC_IMAGE_TAG=13.5}
+    url : ${R2DBC_DATASOURCE_URL:r2dbc:tc:postgresql:///sa_test_db?TC_IMAGE_TAG=13.9}
     username : ${DATASOURCE_USERNAME:postgres}
     password : ${DATASOURCE_PASSWORD:postgres}
   flyway :
-    url : ${JDBC_DATASOURCE_URL:jdbc:tc:postgresql:13.5:///sa_test_db}
+    url : ${JDBC_DATASOURCE_URL:jdbc:tc:postgresql:13.9:///sa_test_db}
     user : ${DATASOURCE_USERNAME:postgres}
     password : ${DATASOURCE_PASSWORD:postgres}
     enabled : true
@@ -32,7 +27,7 @@ spring :
     hibernate :
       ddl-auto : none
       naming :
-        physical-strategy : org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        physical-strategy : org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
         implicit-strategy : org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
     open-in-view : true
     properties :
@@ -43,6 +38,10 @@ spring :
     show-sql : false
 
 ujar :
+  build :
+    description : '@project.description@'
+    relative-path : ''
+    version : '@project.version@'
   jwt :
     token :
       secret : jwtapptokensecret
