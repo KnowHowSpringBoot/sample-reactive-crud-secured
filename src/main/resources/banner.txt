@@ -5,5 +5,6 @@ ${AnsiColor.GREEN} | |_| | | |__| | | (_| | | |
 ${AnsiColor.GREEN}  \__,_|  \____/   \__,_| |_|   
 ${AnsiColor.BLUE} ===============================
 ${AnsiColor.BLUE}  User management REST API
+${AnsiColor.BLUE}  Running Spring Boot ${spring-boot.version}
 ${AnsiColor.BLUE} ===============================
-${AnsiColor.BLACK}
+${AnsiColor.DEFAULT}

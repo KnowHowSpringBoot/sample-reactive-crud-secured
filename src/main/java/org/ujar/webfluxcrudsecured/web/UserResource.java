@@ -23,7 +23,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/users")
-record UserController(UserService userService) {
+record UserResource(UserService userService) {
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
