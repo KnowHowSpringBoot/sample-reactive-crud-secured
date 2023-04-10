@@ -18,7 +18,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/client/users")
-record UserClientController(UserClient userClient) {
+record UserClientResource(UserClient userClient) {
 
   @GetMapping("/{userId}")
   @ApiResponses(@ApiResponse(code = 200, message = "Ok", response = User.class))

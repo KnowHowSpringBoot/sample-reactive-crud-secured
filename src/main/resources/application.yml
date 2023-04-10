@@ -17,11 +17,11 @@ spring :
     pathmatch :
       matching-strategy : ANT_PATH_MATCHER
   r2dbc :
-    url : ${R2DBC_DATASOURCE_URL:r2dbc:postgresql://localhost:5432/sa_test_db}
+    url : ${R2DBC_DATASOURCE_URL:r2dbc:postgresql://localhost:5432/svc_testing_db}
     username : ${DATASOURCE_USERNAME:postgres}
     password : ${DATASOURCE_PASSWORD:postgres}
   flyway :
-    url : ${JDBC_DATASOURCE_URL:jdbc:postgresql://localhost:5432/sa_test_db}
+    url : ${JDBC_DATASOURCE_URL:jdbc:postgresql://localhost:5432/svc_testing_db}
     user : ${DATASOURCE_USERNAME:postgres}
     password : ${DATASOURCE_PASSWORD:postgres}
     enabled : true
