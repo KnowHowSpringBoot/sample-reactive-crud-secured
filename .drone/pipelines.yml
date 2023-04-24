@@ -188,7 +188,9 @@ steps :
       repo : docker-registry.continuousdelivery.store/${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}
       registry : docker-registry.continuousdelivery.store
       force_tag : true
-      build_args : BUILD_VERSION=${DRONE_COMMIT}
+      build_args :
+        - BASE_IMAGE=docker-registry.c2a2.com/jdk:openjdk-19-slim
+        - BUILD_VERSION=${DRONE_COMMIT}
       tags :
         - ${DRONE_BRANCH:22}
     when :
@@ -211,7 +213,9 @@ steps :
       repo : docker-registry.continuousdelivery.store/${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}
       registry : docker-registry.continuousdelivery.store
       force_tag : true
-      build_args : BUILD_VERSION=${DRONE_COMMIT}
+      build_args :
+        - BASE_IMAGE=docker-registry.c2a2.com/jdk:openjdk-19-slim
+        - BUILD_VERSION=${DRONE_COMMIT}
       tags :
         - ${DRONE_TAG}
         - "latest"
