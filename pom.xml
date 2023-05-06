@@ -33,12 +33,12 @@
 
     <parent>
         <groupId>org.ujar.boot</groupId>
-        <artifactId>ujar-boot-parent-pom</artifactId>
+        <artifactId>boot-parent-pom</artifactId>
         <version>23.0.0-SNAPSHOT</version>
     </parent>
 
     <properties>
-        <java.version>19</java.version>
+        <java.version>17</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <sonar.exclusions>**/*Application.java</sonar.exclusions>
@@ -77,7 +77,7 @@
         </dependency>
         <dependency>
             <groupId>org.ujar.boot</groupId>
-            <artifactId>ujar-boot-starter-observability</artifactId>
+            <artifactId>boot-starter-observability</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -172,7 +172,7 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+            <version>4.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -180,7 +180,7 @@
         </dependency>
         <dependency>
             <groupId>org.ujar.boot</groupId>
-            <artifactId>ujar-boot-starter-cache</artifactId>
+            <artifactId>boot-starter-cache</artifactId>
         </dependency>
         <dependency>
             <groupId>net.logstash.logback</groupId>
