@@ -15,7 +15,7 @@ volumes :
 steps :
 
   - name : code-coverage-gate
-    image : docker-registry.c2a2.com/svc-builder:openjdk-19-slim
+    image : docker-registry.continuousdelivery.store/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
     pull : if-not-exists
     volumes :
       - name : m2cache
@@ -24,22 +24,26 @@ steps :
       DATASOURCE_DRIVER : org.postgresql.Driver
       R2DBC_DATASOURCE_URL : r2dbc:postgresql://db:5432/svc_testing_db
       JDBC_DATASOURCE_URL : jdbc:postgresql://db:5432/svc_testing_db
+      MAVEN_OPTS : --add-opens java.base/java.lang=ALL-UNNAMED
       DEPLOYER_USERNAME :
         from_secret : DEPLOYER_USERNAME
       DEPLOYER_PASSWORD :
         from_secret : DEPLOYER_PASSWORD
     commands :
+      - mvn -version
+      - mvn dependency:resolve -s ../maven-settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
       - mvn clean verify -Dstyle.color=always -Dmaven.javadoc.skip=true -s ../maven-settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD
 
   - name : static-analysis-gate
     depends_on :
       - code-coverage-gate
-    image : docker-registry.c2a2.com/svc-builder:openjdk-19-slim
+    image : docker-registry.continuousdelivery.store/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
     pull : if-not-exists
     volumes :
       - name : m2cache
         path : /root/.m2
     environment :
+      MAVEN_OPTS : --add-opens java.base/java.lang=ALL-UNNAMED
       DEPLOYER_USERNAME :
         from_secret : DEPLOYER_USERNAME
       DEPLOYER_PASSWORD :
@@ -89,17 +93,18 @@ volumes :
 steps :
 
   - name : publish-snapshot-jar
-    image : docker-registry.c2a2.com/svc-builder:openjdk-19-slim
+    image : docker-registry.continuousdelivery.store/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
     volumes :
       - name : m2cache
         path : /root/.m2
     environment :
+      MAVEN_OPTS : --add-opens java.base/java.lang=ALL-UNNAMED
       DEPLOYER_USERNAME :
         from_secret : DEPLOYER_USERNAME
       DEPLOYER_PASSWORD :
         from_secret : DEPLOYER_PASSWORD
     commands :
-      - mvn deploy -Dstyle.color=always -DskipTests -Dmaven.test.skip=true -Dmaven.javadoc.skip=true -Dcheckstyle.skip=true -s ../maven-settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD -DaltDeploymentRepository=appfactory-snapshots-repository::https://nexus.c2a2.com/repository/maven-snapshots
+      - mvn deploy -Dstyle.color=always -DskipTests -Dmaven.test.skip=true -Dmaven.javadoc.skip=true -Dcheckstyle.skip=true -s ../maven-settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD -DaltDeploymentRepository=manufacturing-snapshots-repository::https://nexus.continuousdelivery.store/repository/maven-snapshots
     when :
       branch :
         include :
@@ -108,18 +113,19 @@ steps :
           - "*.*.x"
 
   - name : publish-release-jar
-    image : docker-registry.c2a2.com/svc-builder:openjdk-19-slim
+    image : docker-registry.continuousdelivery.store/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
     pull : if-not-exists
     volumes :
       - name : m2cache
         path : /root/.m2
     environment :
+      MAVEN_OPTS : --add-opens java.base/java.lang=ALL-UNNAMED
       DEPLOYER_USERNAME :
         from_secret : DEPLOYER_USERNAME
       DEPLOYER_PASSWORD :
         from_secret : DEPLOYER_PASSWORD
     commands :
-      - mvn deploy -Dstyle.color=always -DskipTests -Dmaven.test.skip=true -Dmaven.javadoc.skip=true -Dcheckstyle.skip=true -s ../maven-settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD -DaltDeploymentRepository=appfactory-releases-repository::https://nexus.c2a2.com/repository/maven-releases
+      - mvn deploy -Dstyle.color=always -DskipTests -Dmaven.test.skip=true -Dmaven.javadoc.skip=true -Dcheckstyle.skip=true -s ../maven-settings.xml -Ddeployer.username=$DEPLOYER_USERNAME -Ddeployer.password=$DEPLOYER_PASSWORD -DaltDeploymentRepository=manufacturing-releases-repository::https://nexus.continuousdelivery.store/repository/maven-releases
     when :
       ref :
         - "refs/tags/*"
@@ -160,12 +166,13 @@ volumes :
 steps :
 
   - name : package-jar
-    image : docker-registry.c2a2.com/svc-builder:openjdk-19-slim
+    image : docker-registry.continuousdelivery.store/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
     pull : if-not-exists
     volumes :
       - name : m2cache
         path : /root/.m2
     environment :
+      MAVEN_OPTS : --add-opens java.base/java.lang=ALL-UNNAMED
       DEPLOYER_USERNAME :
         from_secret : DEPLOYER_USERNAME
       DEPLOYER_PASSWORD :
@@ -178,19 +185,22 @@ steps :
       - package-jar
     image : plugins/docker
     settings :
-      dockerfile : ./.drone/c2a2/Dockerfile
+      dockerfile : ./.drone/Dockerfile
       context : ./
       storage_driver : vfs
       username :
         from_secret : DOCKER_USERNAME
       password :
         from_secret : DOCKER_PASSWORD
-      repo : docker-registry.c2a2.com/${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}
-      registry : docker-registry.c2a2.com
+      repo : docker-registry.continuousdelivery.store/${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}
+      registry : docker-registry.continuousdelivery.store
       force_tag : true
-      build_args : BUILD_VERSION=${DRONE_COMMIT}
+      build_args :
+        - BASE_IMAGE=docker-registry.c2a2.com/jre:ibm-semeru-runtimes-open-17-jre-focal
+        - BUILD_VERSION=${DRONE_COMMIT}
       tags :
         - ${DRONE_BRANCH:22}
+        - ${DRONE_COMMIT}
     when :
       branch :
         include :
@@ -201,23 +211,127 @@ steps :
       - package-jar
     image : plugins/docker
     settings :
-      dockerfile : ./.drone/c2a2/Dockerfile
+      dockerfile : ./.drone/Dockerfile
       context : ./
       storage_driver : vfs
       username :
         from_secret : DOCKER_USERNAME
       password :
         from_secret : DOCKER_PASSWORD
-      repo : docker-registry.c2a2.com/${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}
-      registry : docker-registry.c2a2.com
+      repo : docker-registry.continuousdelivery.store/${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}
+      registry : docker-registry.continuousdelivery.store
       force_tag : true
-      build_args : BUILD_VERSION=${DRONE_COMMIT}
+      build_args :
+        - BASE_IMAGE=docker-registry.c2a2.com/jre:ibm-semeru-runtimes-open-17-jre-focal
+        - BUILD_VERSION=${DRONE_COMMIT}
       tags :
         - ${DRONE_TAG}
         - "latest"
     when :
       ref :
         - "refs/tags/*"
+
+---
+
+kind : pipeline
+name : PromoteFeatureDeployment
+type : docker
+trigger :
+  event :
+    - promote
+  target :
+    - sit
+  ref :
+    - "refs/heads/feature/containerized-*"
+
+steps :
+  - name : deploy
+    failure : ignore
+    image : docker-registry.continuousdelivery.store/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
+    pull : if-not-exists
+    environment :
+      SVC_CHARTS_REPOSITORY :
+        from_secret : SVC_CHARTS_REPOSITORY
+    commands :
+      - git clone $${SVC_CHARTS_REPOSITORY} charts && cd charts
+      - helm install ${DRONE_REPO_NAME} ./${DRONE_REPO_NAME} --values ./${DRONE_REPO_NAME}/${DRONE_DEPLOY_TO}-values.yaml --set image.tag=${DRONE_COMMIT} -n ${DRONE_DEPLOY_TO}-environment
+
+---
+
+kind : pipeline
+name : RollbackFeatureDeployment
+type : docker
+trigger :
+  event :
+    - rollback
+  target :
+    - sit
+  ref :
+    - "refs/heads/feature/containerized-*"
+
+steps :
+  - name : rollback
+    failure : ignore
+    image : docker-registry.continuousdelivery.store/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
+    pull : if-not-exists
+    environment :
+      SVC_CHARTS_REPOSITORY :
+        from_secret : SVC_CHARTS_REPOSITORY
+    commands :
+      - git clone $${SVC_CHARTS_REPOSITORY} charts && cd charts
+      - helm uninstall ${DRONE_REPO_NAME} -n ${DRONE_DEPLOY_TO}-environment
+
+---
+
+kind : pipeline
+name : PromoteDeployment
+type : docker
+trigger :
+  event :
+    - promote
+  target :
+    - uat
+    - production
+  ref :
+    - "refs/tags/*"
+
+steps :
+  - name : deploy
+    failure : ignore
+    image : docker-registry.continuousdelivery.store/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
+    pull : if-not-exists
+    environment :
+      SVC_CHARTS_REPOSITORY :
+        from_secret : SVC_CHARTS_REPOSITORY
+    commands :
+      - git clone $${SVC_CHARTS_REPOSITORY} charts && cd charts
+      - helm install ${DRONE_REPO_NAME} ./${DRONE_REPO_NAME} --values ./${DRONE_REPO_NAME}/${DRONE_DEPLOY_TO}-values.yaml --set image.tag=${DRONE_TAG} -n ${DRONE_DEPLOY_TO}-environment
+
+---
+
+kind : pipeline
+name : RollbackDeployment
+type : docker
+trigger :
+  event :
+    - rollback
+  target :
+    - uat
+    - production
+  ref :
+    - "refs/tags/*"
+
+steps :
+  - name : rollback
+    failure : ignore
+    image : docker-registry.continuousdelivery.store/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
+    pull : if-not-exists
+    environment :
+      SVC_CHARTS_REPOSITORY :
+        from_secret : SVC_CHARTS_REPOSITORY
+    commands :
+      - git clone $${SVC_CHARTS_REPOSITORY} charts && cd charts
+      - helm uninstall ${DRONE_REPO_NAME} -n ${DRONE_DEPLOY_TO}-environment
 
 ---
 
@@ -240,7 +354,7 @@ steps :
 
   - name : create-release-tag
     failure : ignore
-    image : docker-registry.c2a2.com/svc-builder:openjdk-19-slim
+    image : docker-registry.continuousdelivery.store/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
     pull : if-not-exists
     volumes :
       - name : m2cache
