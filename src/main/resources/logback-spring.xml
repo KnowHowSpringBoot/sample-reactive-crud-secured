@@ -1,17 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
-
-    <springProperty name="feature" source="spring.application.name"/>
     <springProperty name="application_name" source="spring.application.name"/>
 
     <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener"/>
 
+    <appender name="LOKI" class="com.github.loki4j.logback.Loki4jAppender">
+        <batchTimeoutMs>10000</batchTimeoutMs>
+        <http>
+            <url>${LOKI_URL:-http://localhost:3100/loki/api/v1/push}</url>
+        </http>
+        <format>
+            <label>
+                <pattern>application=${application_name},level=%level,host=${HOSTNAME},runtimeEnv=${SVC_POD_NAMESPACE},traceID=%X{traceId:-NONE}</pattern>
+            </label>
+            <message>
+                <pattern>{"message": "%msg", "logger": "%logger{20}", "thread": "%thread", "traceID": "%X{traceId:-NONE}"}</pattern>
+            </message>
+            <sortByTime>true</sortByTime>
+        </format>
+    </appender>
+
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>${application_name} %clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint}
-                %clr([%X{transactionId},%X{traceId:-},%X{spanId:-}]){blue}[%thread] %clr(%-5level)
-                %clr(%logger{36}){magenta} - %msg%n
-            </pattern>
+            <pattern>${application_name} %clr(%d{yyyy-MM-dd HH:mm:ss.SSS}) %clr([%thread]){blue} %clr(%-5level) %clr(%logger{36}){magenta} - %msg%n</pattern>
         </encoder>
     </appender>
 
@@ -25,19 +37,16 @@
                 <pattern>
                     <pattern>
                         {
-                        "env": "${ENV}",
-                        "feature": "${feature}",
+                        "application": "${application_name}",
+                        "traceID": "%X{traceId:-NONE}",
+                        "message": "%message",
                         "level": "%level",
                         "thread": "%thread",
                         "logger": "%logger",
                         "class": "%class",
-                        "message": "%message",
                         "method": "%method",
                         "line": "%line",
-                        "hostname": "${HOSTNAME}",
-                        "trace_id":"%X{dd.trace_id:-0}",
-                        "span_id": "%X{dd.span_id:-0}",
-                        "data_privacy":"%X{private:-0}"
+                        "hostname": "${HOSTNAME}"
                         }
                     </pattern>
                 </pattern>
@@ -52,6 +61,7 @@
             </providers>
         </encoder>
     </appender>
+
     <root level="INFO">
         <appender-ref ref="${LOGBACK_APPENDER:-CONSOLE}"/>
     </root>
