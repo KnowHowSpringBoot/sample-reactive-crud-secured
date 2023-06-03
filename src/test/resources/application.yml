@@ -8,11 +8,11 @@ spring :
     livereload :
       enabled : false
   r2dbc :
-    url : ${R2DBC_DATASOURCE_URL:r2dbc:tc:postgresql:///svc_testing_db?TC_IMAGE_TAG=13.10}
+    url : ${R2DBC_DATASOURCE_URL:r2dbc:tc:postgresql:///svc_testing_db?TC_IMAGE_TAG=13.11}
     username : ${DATASOURCE_USERNAME:postgres}
     password : ${DATASOURCE_PASSWORD:postgres}
   flyway :
-    url : ${JDBC_DATASOURCE_URL:jdbc:tc:postgresql:13.10:///svc_testing_db}
+    url : ${JDBC_DATASOURCE_URL:jdbc:tc:postgresql:13.11:///svc_testing_db}
     user : ${DATASOURCE_USERNAME:postgres}
     password : ${DATASOURCE_PASSWORD:postgres}
     enabled : true
@@ -40,7 +40,7 @@ spring :
 ujar :
   build :
     description : '@project.description@'
-    relative-path : ''
+    relative-path : '/'
     version : '@project.version@'
   jwt :
     token :
