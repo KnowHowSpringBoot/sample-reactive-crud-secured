@@ -15,7 +15,7 @@ volumes :
 steps :
 
   - name : code-coverage-gate
-    image : know-how.store/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
+    image : know-how.download/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
     pull : if-not-exists
     volumes :
       - name : m2cache
@@ -37,7 +37,7 @@ steps :
   - name : static-analysis-gate
     depends_on :
       - code-coverage-gate
-    image : know-how.store/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
+    image : know-how.download/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
     pull : if-not-exists
     volumes :
       - name : m2cache
@@ -108,7 +108,7 @@ volumes :
 steps :
 
   - name : publish-snapshot-jar
-    image : know-how.store/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
+    image : know-how.download/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
     volumes :
       - name : m2cache
         path : /root/.m2
@@ -128,7 +128,7 @@ steps :
           - "*.*.x"
 
   - name : publish-release-jar
-    image : know-how.store/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
+    image : know-how.download/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
     pull : if-not-exists
     volumes :
       - name : m2cache
@@ -202,7 +202,7 @@ volumes :
 steps :
 
   - name : package-jar
-    image : know-how.store/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
+    image : know-how.download/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
     pull : if-not-exists
     volumes :
       - name : m2cache
@@ -228,11 +228,11 @@ steps :
         from_secret : DOCKER_USERNAME
       password :
         from_secret : DOCKER_PASSWORD
-      repo : know-how.store/${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}
-      registry : know-how.store
+      repo : know-how.download/${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}
+      registry : know-how.download
       force_tag : true
       build_args :
-        - BASE_IMAGE=know-how.store/jre:ibm-semeru-runtimes-open-17-jre-focal
+        - BASE_IMAGE=know-how.download/jre:ibm-semeru-runtimes-open-17-jre-focal
         - BUILD_VERSION=${DRONE_COMMIT}
       tags :
         - ${DRONE_BRANCH:22}-${CI_BUILD_NUMBER}
@@ -253,11 +253,11 @@ steps :
         from_secret : DOCKER_USERNAME
       password :
         from_secret : DOCKER_PASSWORD
-      repo : know-how.store/${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}
-      registry : know-how.store
+      repo : know-how.download/${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}
+      registry : know-how.download
       force_tag : true
       build_args :
-        - BASE_IMAGE=know-how.store/jre:ibm-semeru-runtimes-open-17-jre-focal
+        - BASE_IMAGE=know-how.download/jre:ibm-semeru-runtimes-open-17-jre-focal
         - BUILD_VERSION=${DRONE_COMMIT}
       tags :
         - ${DRONE_TAG}
@@ -281,7 +281,7 @@ trigger :
 
 steps :
   - name : deploy
-    image : know-how.store/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
+    image : know-how.download/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
     pull : if-not-exists
     environment :
       HELM_CHARTS_REPOSITORY :
@@ -326,7 +326,7 @@ trigger :
 
 steps :
   - name : rollback
-    image : know-how.store/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
+    image : know-how.download/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
     pull : if-not-exists
     environment :
       HELM_CHARTS_REPOSITORY :
@@ -351,7 +351,7 @@ trigger :
 
 steps :
   - name : deploy
-    image : know-how.store/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
+    image : know-how.download/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
     pull : if-not-exists
     environment :
       HELM_CHARTS_REPOSITORY :
@@ -397,7 +397,7 @@ trigger :
 
 steps :
   - name : rollback
-    image : know-how.store/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
+    image : know-how.download/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
     pull : if-not-exists
     environment :
       HELM_CHARTS_REPOSITORY :
@@ -427,7 +427,7 @@ steps :
 
   - name : create-release-tag
     failure : ignore
-    image : know-how.store/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
+    image : know-how.download/svc-builder:ibm-semeru-runtimes-open-17-jdk-focal
     pull : if-not-exists
     volumes :
       - name : m2cache
