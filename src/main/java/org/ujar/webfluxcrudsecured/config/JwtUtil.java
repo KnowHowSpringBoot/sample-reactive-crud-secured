@@ -26,11 +26,11 @@ public class JwtUtil {
 
   public Claims getClaimsFromToken(String authToken) {
     String key = Base64.getEncoder().encodeToString(jwtTokenProperties.getSecret().getBytes(StandardCharsets.UTF_8));
-    return Jwts.parserBuilder()
+    return Jwts.parser()
         .setSigningKey(key)
         .build()
-        .parseClaimsJws(authToken)
-        .getBody();
+        .parseSignedClaims(authToken)
+        .getPayload();
   }
 
   public boolean validateToken(String authToken) {
