@@ -45,6 +45,7 @@
         <sonar.exclusions>**/*Application.java</sonar.exclusions>
         <sonar.coverage.exclusions>**/*Config*.java,**/*Properties.java,**/*Test.java,**/Test*.java</sonar.coverage.exclusions>
         <springfox.version>2.10.5</springfox.version>
+        <flyway.version>9.22.3</flyway.version>
         <checkstyle.skip>false</checkstyle.skip>
         <maven.gitcommitid.skip>false</maven.gitcommitid.skip>
         <start-class>org.ujar.webfluxcrudsecured.WebfluxCrudSecuredApplication</start-class>
@@ -114,7 +115,7 @@
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-            <version>9.22.3</version>
+            <version>${flyway.version}</version>
         </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
