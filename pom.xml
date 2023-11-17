@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.ujar</groupId>
+    <groupId>dev.knowhowto.sb</groupId>
     <artifactId>sample-webflux-crud-secured</artifactId>
     <version>23.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -18,12 +18,12 @@
         </license>
     </licenses>
     <organization>
-        <name>uJar Bootcamp</name>
-        <url>https://www.ujar.org</url>
+        <name>KnowHowSpringBoot Bootcamp</name>
+        <url>https://knowhowto.dev</url>
     </organization>
     <developers>
         <developer>
-            <id>1</id>
+            <id>dimdnk</id>
             <name>Dima Denysenko</name>
             <email>coding@dimdnk.com</email>
             <roles>
@@ -33,7 +33,7 @@
     </developers>
 
     <parent>
-        <groupId>org.ujar.boot</groupId>
+        <groupId>dev.knowhowto.boot</groupId>
         <artifactId>boot-parent-pom</artifactId>
         <version>23.0.0-SNAPSHOT</version>
     </parent>
@@ -45,9 +45,10 @@
         <sonar.exclusions>**/*Application.java</sonar.exclusions>
         <sonar.coverage.exclusions>**/*Config*.java,**/*Properties.java,**/*Test.java,**/Test*.java</sonar.coverage.exclusions>
         <springfox.version>2.10.5</springfox.version>
+        <flyway.version>9.22.3</flyway.version>
         <checkstyle.skip>false</checkstyle.skip>
         <maven.gitcommitid.skip>false</maven.gitcommitid.skip>
-        <start-class>org.ujar.webfluxcrudsecured.WebfluxCrudSecuredApplication</start-class>
+        <start-class>dev.knowhowto.webfluxcrudsecured.WebfluxCrudSecuredApplication</start-class>
     </properties>
 
     <dependencyManagement>
@@ -77,7 +78,7 @@
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.ujar.boot</groupId>
+            <groupId>dev.knowhowto.boot</groupId>
             <artifactId>boot-starter-observability</artifactId>
         </dependency>
         <dependency>
@@ -114,6 +115,7 @@
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
+            <version>${flyway.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -180,7 +182,7 @@
             <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.ujar.boot</groupId>
+            <groupId>dev.knowhowto.boot</groupId>
             <artifactId>boot-starter-cache</artifactId>
         </dependency>
         <dependency>
