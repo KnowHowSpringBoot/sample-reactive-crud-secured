@@ -138,7 +138,7 @@ management :
     prometheus :
       enabled : true
 
-ujar :
+knowhowto :
   build :
     description : '@project.description@'
     relative-path : ${SERVER_SERVLET_CONTEXT_PATH:/}
