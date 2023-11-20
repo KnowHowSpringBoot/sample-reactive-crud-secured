@@ -2,6 +2,7 @@ package dev.knowhowto.webfluxcrudsecured.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -26,13 +27,13 @@ public class WebSecurityConfig {
       "/webjars/**",
       "/swagger-ui.html"};
 
-  private final AuthenticationManager authenticationManager;
+  private final AuthenticationProvider authenticationProvider;
   private final SecurityContextRepository securityContextRepository;
 
   @Autowired
-  public WebSecurityConfig(AuthenticationManager authenticationManager,
+  public WebSecurityConfig(AuthenticationProvider authenticationProvider,
                            SecurityContextRepository securityContextRepository) {
-    this.authenticationManager = authenticationManager;
+    this.authenticationProvider = authenticationProvider;
     this.securityContextRepository = securityContextRepository;
   }
 
@@ -42,7 +43,7 @@ public class WebSecurityConfig {
   }
 
   @Bean
-  public SecurityFilterChain securityFilterChain(HttpSecurity http) {
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     return http
         .csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(req ->
@@ -52,8 +53,7 @@ public class WebSecurityConfig {
                 .anyRequest()
                 .authenticated()
         )
-        .authenticationManager(authenticationManager)
-        .securityContextRepository(securityContextRepository)
+        .authenticationProvider(authenticationProvider)
         .build();
   }
 }
