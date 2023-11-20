@@ -2,18 +2,30 @@ package dev.knowhowto.webfluxcrudsecured.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
-import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.server.SecurityWebFilterChain;
-import reactor.core.publisher.Mono;
+import org.springframework.security.web.SecurityFilterChain;
 
 @EnableWebFluxSecurity
 @EnableReactiveMethodSecurity
 public class WebSecurityConfig {
+
+  private static final String[] WHITE_LIST_URL = {"/api/v1/auth/**",
+      "/v2/api-docs",
+      "/v3/api-docs",
+      "/v3/api-docs/**",
+      "/swagger-resources",
+      "/swagger-resources/**",
+      "/configuration/ui",
+      "/configuration/security",
+      "/swagger-ui/**",
+      "/webjars/**",
+      "/swagger-ui.html"};
+
   private final AuthenticationManager authenticationManager;
   private final SecurityContextRepository securityContextRepository;
 
@@ -30,32 +42,18 @@ public class WebSecurityConfig {
   }
 
   @Bean
-  public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity httpSecurity) {
-    return httpSecurity
-        .exceptionHandling()
-        .authenticationEntryPoint(
-            (swe, e) ->
-                Mono.fromRunnable(
-                    () -> swe.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED)
-                )
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) {
+    return http
+        .csrf(AbstractHttpConfigurer::disable)
+        .authorizeHttpRequests(req ->
+            req.requestMatchers(WHITE_LIST_URL)
+                .permitAll()
+                .requestMatchers("/controller").hasRole("ADMIN")
+                .anyRequest()
+                .authenticated()
         )
-        .accessDeniedHandler(
-            (swe, e) ->
-                Mono.fromRunnable(
-                    () -> swe.getResponse().setStatusCode(HttpStatus.FORBIDDEN)
-                )
-        )
-        .and()
-        .csrf().disable()
-        .formLogin().disable()
-        .httpBasic().disable()
         .authenticationManager(authenticationManager)
         .securityContextRepository(securityContextRepository)
-        .authorizeExchange()
-        .pathMatchers("/", "/login", "/favicon.ico").permitAll()
-        .pathMatchers("/controller").hasRole("ADMIN")
-        .anyExchange().authenticated()
-        .and()
         .build();
   }
 }
