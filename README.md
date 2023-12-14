@@ -4,13 +4,13 @@ Minimal Spring Boot based reactive CRUD example, which manages user entity (incl
 
 ## Technology stack
 
-Java 17, Spring Boot, Webflux, Postgres, Flyway, Springfox
+java 21, Spring Boot, Webflux, Postgres, Flyway, Springfox
 
 ## Prerequisites
 
 The following items should be installed in your system:
 
-* Java 17 or newer.
+* java 21 or newer.
 * git command line tool (https://help.github.com/articles/set-up-git)
 * Your preferred IDE (IDEA preferably)
 
@@ -27,7 +27,7 @@ This application is a [Spring Boot](https://spring.io/guides/gs/spring-boot) app
 using [Maven](https://spring.io/guides/gs/maven/). You can build a jar file and run it from the command line:
 
 ```
-git clone https://github.com/ujar-org/sample-webflux-crud-secured.git
+git clone https://github.com/KnowHowSpringBoot/sample-webflux-crud-secured.git
 cd sample-webflux-crud-secured
 ./mvnw package
 java -jar target/*.jar
@@ -46,7 +46,7 @@ Now you can access to the Swagger UI here: http://localhost:8080/swagger-ui.html
 1) On the command line
 
 ```
-git clone https://github.com/ujar-org/sample-webflux-crud-secured.git
+git clone https://github.com/KnowHowSpringBoot/sample-webflux-crud-secured.git
 ```
 
 2) Inside IDE
