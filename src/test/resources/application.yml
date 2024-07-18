@@ -1,6 +1,6 @@
 spring :
   application :
-    name : sample-webflux-crud-secured
+    name : sample-reactive-crud-secured
   devtools :
     add-properties : false
     restart :
