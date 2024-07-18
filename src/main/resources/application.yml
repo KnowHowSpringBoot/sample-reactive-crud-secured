@@ -12,7 +12,7 @@ info :
 
 spring :
   application :
-    name : sample-webflux-crud-secured
+    name : sample-reactive-crud-secured
   mvc :
     pathmatch :
       matching-strategy : ANT_PATH_MATCHER
