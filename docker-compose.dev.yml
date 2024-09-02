@@ -12,7 +12,7 @@ services :
       - POSTGRES_DB=svc_testing_db
   prometheus :
     container_name : webflux-crud-secured-prometheus
-    image : prom/prometheus:v2.48.1
+    image : prom/prometheus:v2.54.1
     volumes :
       - ./src/main/docker/prometheus/:/etc/prometheus/
     command :
@@ -22,7 +22,7 @@ services :
     network_mode : 'host' # to test locally running service
   grafana :
     container_name : webflux-crud-secured-grafana
-    image : grafana/grafana:10.2.2
+    image : grafana/grafana:11.2.0
     volumes :
       - ./src/main/docker/grafana/provisioning/:/etc/grafana/provisioning/
     environment :
