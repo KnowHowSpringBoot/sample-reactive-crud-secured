@@ -10,6 +10,7 @@ on :
   push :
     branches :
       - "dev"
+      - "wip"
       - "feature/*"
       - "bugfix/*"
       - "improvement/*"
