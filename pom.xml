@@ -33,7 +33,7 @@
     </developers>
 
     <parent>
-        <groupId>org.iqkv.boot</groupId>
+        <groupId>com.iqkv.boot</groupId>
         <artifactId>boot-parent-pom</artifactId>
         <version>24.0.0-SNAPSHOT</version>
     </parent>
@@ -77,7 +77,7 @@
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.iqkv.boot</groupId>
+            <groupId>com.iqkv.boot</groupId>
             <artifactId>boot-starter-observability</artifactId>
         </dependency>
         <dependency>
@@ -171,7 +171,7 @@
 
 
         <dependency>
-            <groupId>org.iqkv.boot</groupId>
+            <groupId>com.iqkv.boot</groupId>
             <artifactId>boot-starter-cache</artifactId>
         </dependency>
         <dependency>
