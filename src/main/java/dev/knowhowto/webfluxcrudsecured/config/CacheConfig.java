@@ -2,13 +2,13 @@ package dev.knowhowto.webfluxcrudsecured.config;
 
 import java.time.Duration;
 
+import com.iqkv.boot.cache.CacheProperties;
 import dev.knowhowto.webfluxcrudsecured.entity.User;
 import org.ehcache.config.builders.CacheConfigurationBuilder;
 import org.ehcache.config.builders.ExpiryPolicyBuilder;
 import org.ehcache.config.builders.ResourcePoolsBuilder;
 import org.ehcache.jsr107.Eh107Configuration;
 import org.hibernate.cache.jcache.ConfigSettings;
-import com.iqkv.boot.cache.CacheProperties;
 import org.springframework.boot.autoconfigure.cache.JCacheManagerCustomizer;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernatePropertiesCustomizer;
 import org.springframework.cache.annotation.EnableCaching;
