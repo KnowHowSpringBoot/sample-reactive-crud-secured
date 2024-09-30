@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>dev.knowhowto</groupId>
+    <groupId>dev.knowhowto.sample</groupId>
     <artifactId>sample-reactive-crud-secured</artifactId>
     <version>24.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
