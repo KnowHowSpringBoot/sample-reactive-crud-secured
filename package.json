@@ -19,12 +19,24 @@
     ]
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "@semantic-release/git": "^10.0.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "glob": "^11.0.0",
     "husky": "9.1.6",
+    "lint-staged": "^15.2.5",
     "prettier": "3.3.3",
     "prettier-plugin-java": "2.6.4",
     "prettier-plugin-packagejson": "2.5.2",
+    "semantic-release": "^24.1.2",
     "stylelint": "^16.2.1",
     "stylelint-config-standard-scss": "^13.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   },
   "engines": {
     "node": ">=18.20.4"
