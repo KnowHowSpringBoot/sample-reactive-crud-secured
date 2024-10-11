@@ -22,7 +22,7 @@ services :
     network_mode : 'host' # to test locally running service
   grafana :
     container_name : webflux-crud-secured-grafana
-    image : grafana/grafana:11.2.0
+    image : grafana/grafana:11.2.2
     volumes :
       - ./src/main/docker/grafana/provisioning/:/etc/grafana/provisioning/
     environment :
